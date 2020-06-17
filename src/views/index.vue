@@ -1,16 +1,6 @@
 <template>
   <div class="home">
-    <el-menu class="menudemo" >
-      <el-submenu v-for="(item,index) in menuList" :key="index" :index="index +'1'" collapse-transition="true" @click="menuLink(item)">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span slot="title">{{item.meta.title}}</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item  v-for="(menu, idx) in item.children" :index="index +'-'+ idx" :key="idx" @click="menuLink(menu)">{{menu.meta.title}}</el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
-    </el-menu>
+    <Menu class="menudemo" :menuList="menuList"></Menu>
     <div class="content">
       <router-view></router-view>
     </div>
@@ -18,6 +8,7 @@
 </template>
 
 <script>
+import Menu from '../views/elementUI/menu'
 export default {
   computed:{
     menuList(){
@@ -30,7 +21,8 @@ export default {
     menuLink (child) {
       this.$router.push({path: child.path})
     },
-  }
+  },
+  components:{Menu}
 }
 </script>
 

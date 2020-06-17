@@ -16,6 +16,25 @@ const router = new VueRouter({
         component: () => import('../views/elementUI/table.vue'),
         meta: { title: 'table',hidden:false }
       },
+      {
+        path: '/menu',
+        name: 'menu',
+        component: () => import('../views/elementUI/menu.vue'),
+        meta: { title: 'menu',hidden:false }
+      },
+    ]
+  },
+  {
+    path: '/html',
+    component:Index,
+    meta: { title: 'HTML',hidden:false},
+    children: [
+      {
+        path: '/iframe',
+        name: 'iframe',
+        component: () => import('../views/HTML/iframe.vue'),
+        meta: { title: 'iframe',hidden:false }
+      },
     ]
   }]
 })
