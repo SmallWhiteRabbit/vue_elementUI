@@ -3,6 +3,10 @@ import VueRouter from 'vue-router'
 import Index from '../views/index'
 
 Vue.use(VueRouter)
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 const router = new VueRouter({
   mode: 'history',
   routes: [{
@@ -34,6 +38,12 @@ const router = new VueRouter({
         name: 'iframe',
         component: () => import('../views/HTML/iframe.vue'),
         meta: { title: 'iframe',hidden:false }
+      },
+      {
+        path: '/percent',
+        name: 'percent',
+        component: () => import('../views/HTML/percent.vue'),
+        meta: { title: 'percent',hidden:false }
       },
     ]
   }]

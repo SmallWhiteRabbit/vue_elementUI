@@ -42,6 +42,7 @@ export default {
     height: 100%;
     >div{
       padding: 20px;
+      height: 100%;
     }
   }
 }

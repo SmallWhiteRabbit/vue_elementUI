@@ -1,5 +1,7 @@
 <template>
-   <el-menu :collapse="isCollapse" class="menu"  :default-active="$route.path" :unique-opened="true">
+   <el-menu :collapse="isCollapse" class="menu"   background-color="#596c61"
+      text-color="#fff"
+      active-text-color="#ffd04b" :default-active="$route.path" :unique-opened="true">
 
     <component v-for="(item,index) in menuList" :key="item.path" 
     :is="(item.children&&item.children.length>0)?'el-submenu':'el-menu-item'" :index="item.path">
@@ -44,5 +46,8 @@ export default {
 </script>
 
 <style>
-
+ .el-menu-item-group>ul{
+   left: -2px;
+    position: relative;
+ }
 </style>
