@@ -18,7 +18,7 @@ const router = new VueRouter({
         path: '/table',
         name: 'table',
         component: () => import('../views/elementUI/table.vue'),
-        meta: { title: 'table',hidden:false }
+        meta: { title: 'table',hidden:false },
       },
       {
         path: '/menu',

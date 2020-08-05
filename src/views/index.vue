@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Menu from '../views/elementUI/menu'
+import Menu from '../components/menu'
 export default {
   computed:{
     menuList(){

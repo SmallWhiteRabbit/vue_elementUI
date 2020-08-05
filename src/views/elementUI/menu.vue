@@ -1,53 +1,105 @@
 <template>
-   <el-menu :collapse="isCollapse" class="menu"   background-color="#596c61"
-      text-color="#fff"
-      active-text-color="#ffd04b" :default-active="$route.path" :unique-opened="true">
+<div>
+  <Menu :menuList="menuList"  class="menudemo" style="height:20%"></Menu>
+  <MenuHorizontal :menuList="menuArray"  class="menudemo" style="height:20%;width:100%"></MenuHorizontal>
 
-    <component v-for="(item,index) in menuList" :key="item.path" 
-    :is="(item.children&&item.children.length>0)?'el-submenu':'el-menu-item'" :index="item.path">
-      <template slot="title" :index="index" v-if="item.children&&item.children.length>0"> 
-        <!-- <i :class="'iconfont '+item.icon"></i> -->
-        <span slot="title">{{item.meta.title}}</span>
-<!-- {{menuList}} -->
-      </template>
-      <!-- 无子菜单的不应配置 slot="title" 会导致折叠时图标不显示-->
-        <template  :index="index" v-else> 
-        <i :class="'iconfont '+item.icon"></i>
-        <span slot="title">{{item.meta.title}}</span>
-      </template>
-      <template v-if="item.children&&item.children.length>0" >
-        <el-menu-item-group>
-          <el-menu-item :class="{'is-active':$route.path==menu.path}"  v-for="(menu,idx) in item.children" :index="menu.path" :key="idx" 
-          @click="menuLink(menu)" >{{menu.meta.title}}</el-menu-item>
-        </el-menu-item-group>
-      </template>
-    </component>
-    
-  </el-menu>
+  <MenuCascader  :options="listOptions"></MenuCascader>
+  </div>
 </template>
 
 <script>
+import Menu from '../../components/menu'
+import MenuCascader from '../../components/menuCascader'
+import MenuHorizontal from '../../components/menuHorizontal'
+
 export default {
   data(){
     return{
-      isCollapse:false
+      listOptions:[
+        {
+          value: 'zhinan',
+          label: '指南',
+          children: [{
+            value: 'shejiyuanze',
+            label: '设计原则',
+            children: [{
+              value: 'yizhi',
+              label: '一致'
+            }]
+          }]
+        }
+      ],
+      menuArray: [{
+        path: '/',
+        component:() => import('../index'),
+        meta: { title: 'ElementUI',hidden:false},
+        children: [
+          {
+            path: '/table',
+            name: 'table',
+            component: () => import('./table'),
+            meta: { title: 'table',hidden:false },
+          },
+          {
+            path: '/menu',
+            name: 'menu',
+            component: () => import('./menu.vue'),
+            meta: { title: 'menu',hidden:false }
+          },
+        ]
+      },
+      {
+        path: '/html',
+        component:() => import('../index'),
+        meta: { title: 'HTML',hidden:false},
+        children: [
+          {
+            path: '/iframe',
+            name: 'iframe',
+            component: () => import('../HTML/iframe'),
+            meta: { title: 'iframe',hidden:false },
+            children: [
+              {
+                path: '/percent',
+                name: 'percent',
+                component: () => import('../HTML/percent'),
+                meta: { title: 'percent',hidden:false }
+              }
+            ]
+          },
+          {
+            path: '/percent',
+            name: 'percent',
+            component: () => import('../HTML/percent'),
+            meta: { title: 'percent',hidden:false }
+          },
+        ]
+      }]
     }
   },
-  props:['menuList'],
+  components:{Menu, MenuCascader,MenuHorizontal},
   mounted(){
-    console.log(this.menuList)
+
+  },
+  computed:{
+    menuList(){
+      return this.$router.options.routes.filter(function (routes) {
+        return !routes.meta.hidden
+      })
+    }
   },
   methods:{
-     menuLink (child) {
-      this.$router.push({path: child.path})
-    },
+
   }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
  .el-menu-item-group>ul{
    left: -2px;
     position: relative;
+ }
+.menudemo{
+   height: 50%;
  }
 </style>
