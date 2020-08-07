@@ -18,13 +18,13 @@ const router = new VueRouter({
         path: '/table',
         name: 'table',
         component: () => import('../views/elementUI/table.vue'),
-        meta: { title: 'table',hidden:false },
+        meta: { title: '表格',hidden:false },
       },
       {
         path: '/menu',
         name: 'menu',
         component: () => import('../views/elementUI/menu.vue'),
-        meta: { title: 'menu',hidden:false }
+        meta: { title: '菜单',hidden:false }
       },
     ]
   },
@@ -46,6 +46,45 @@ const router = new VueRouter({
         meta: { title: 'percent',hidden:false }
       },
     ]
-  }]
+  },
+  {
+    path:'/editor',
+    component:Index,
+    meta: { title: '富文本编辑器',hidden:false},
+    children: [
+      {
+        path: '/ueditor',
+        name: 'ueditor',
+        component: () => import('../views/editor/UEditor.vue'),
+        meta: { title: 'ueditor',hidden:false },
+      },
+      {
+        path: '/editorTiptap',
+        name: 'editorTiptap',
+        component: () => import('../views/editor/tiptap.vue'),
+        meta: { title: 'tiptap',hidden:false },
+      },
+      {
+        path: '/vueQuillEditor',
+        name: 'vueQuillEditor',
+        component: () => import('../views/editor/vue_quill_editor.vue'),
+        meta: { title: 'vueQuillEditor',hidden:false },
+      },
+      {
+        path: '/TinyMCE',
+        name: 'TinyMCE',
+        component: () => import('../views/editor/TinyMCE.vue'),
+        meta: { title: 'TinyMCE',hidden:false },
+      },
+      {
+        path: '/Jodit',
+        name: 'Jodit',
+        component: () => import('../views/editor/Jodit.vue'),
+        meta: { title: 'Jodit',hidden:false },
+      },
+      
+    ]
+  }
+]
 })
 export default router

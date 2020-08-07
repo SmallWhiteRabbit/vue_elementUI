@@ -33,7 +33,7 @@
 
 <script>
 // import mock from '../../mock/table'
-import {http} from '../../api/index'
+import http from '../../api/index'
 
 export default {
   data(){
