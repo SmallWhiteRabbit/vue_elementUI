@@ -19,6 +19,11 @@ const router = new VueRouter({
         name: 'table',
         component: () => import('../views/elementUI/table.vue'),
         meta: { title: '表格',hidden:false },
+      }, {
+        path: '/menuTree',
+        name: 'menuTree',
+        component: () => import('../views/elementUI/menuTree.vue'),
+        meta: { title: 'menuTree',hidden:false },
       },
       {
         path: '/menu',

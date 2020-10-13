@@ -34,7 +34,7 @@
 <script>
 // import mock from '../../mock/table'
 import http from '../../api/index'
-
+import { firstTypeList }  from '../../api/index'
 export default {
   data(){
     return{
@@ -50,6 +50,7 @@ export default {
   },
   created(){
     // this.getTable()
+    firstTypeList()
   },
   mounted(){
     this.setTableHeight()

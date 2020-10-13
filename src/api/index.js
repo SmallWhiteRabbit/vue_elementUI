@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+import request from '@/utils/request'
 const http = axios.create({
   baseURL:"",
   // transformRequest: [function (data, headers) {
@@ -11,3 +12,12 @@ const http = axios.create({
 })
 
 export default http;
+
+
+export const firstTypeList = function(params){
+  return request({
+    url: 's',
+    method: 'get',
+    params: params,
+  })
+}
