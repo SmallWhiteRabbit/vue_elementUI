@@ -7,6 +7,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 import ElementUI from 'element-ui'
 Vue.use(ElementUI)
 
+import VueDND from 'awe-dnd'
+Vue.use(VueDND)
+
 new Vue({
   router,
   render: h => h(App),

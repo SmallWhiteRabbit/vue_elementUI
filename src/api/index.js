@@ -1,5 +1,4 @@
 import axios from 'axios'
-
 import request from '@/utils/request'
 const http = axios.create({
   baseURL:"",
